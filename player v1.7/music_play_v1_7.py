@@ -66,9 +66,7 @@ def createToolTip(widget, text):
 
 
 path = os.path.dirname(os.path.abspath(__file__))
-path = path+'\\songs\\music_files'
-if not os.path.exists(path):
-    os.makedirs(path)
+path_m = path+'\\songs\\music_files'
 
 default_loading = 0  # 开启tk默认加载foldpath
 switch_num = 0
@@ -137,8 +135,8 @@ def music_save(item):
         id_name = item['id_name']
         url = 'http://music.163.com/song/media/outer/url?id={}.mp3'.format(id)
 
-        os.makedirs(path,exist_ok=True)
-        request.urlretrieve(url,path+'/{}.mp3'.format(id_name))
+        os.makedirs(path_m,exist_ok=True)
+        request.urlretrieve(url,path_m+'/{}.mp3'.format(id_name))
         o1.insert(END, id_name)
         music_list.append(id_name+'.mp3')   
     except:
@@ -188,7 +186,7 @@ def find():
     global index
 
     if not default_loading:  # 第一次打开(开启tk会自动打开一次，即默认)
-        folder_path = path
+        folder_path = path_m
         default_loading = 1
     else:
         folder_path_fu = callback1()
@@ -926,19 +924,19 @@ if __name__ == "__main__":
     root = Tk()
     root.geometry('1000x670+183+10')
     root.title('MP3音乐播放器 v1.7.1')
-    root.iconbitmap('images/head.ico')
+    root.iconbitmap(path+'/images/head.ico')
     root.attributes("-alpha", 0.95)
     root.resizable(False,False)
 
     root.protocol('WM_DELETE_WINDOW', closeWindow) # x掉窗口并运行closeWindow
 
     # tk背景设置
-    file1 = 'images/bg1.png'
-    file2 = 'images/bg2.png'
-    file3 = 'images/bg3.png'
-    file4 = 'images/bg4.png'
-    file5 = 'images/bg5.png'
-    file6 = 'images/bg6.png'
+    file1 = path+'/images/bg1.png'
+    file2 = path+'/images/bg2.png'
+    file3 = path+'/images/bg3.png'
+    file4 = path+'/images/bg4.png'
+    file5 = path+'/images/bg5.png'
+    file6 = path+'/images/bg6.png'
     bg1 = PhotoImage(file=file1)
     bg2 = PhotoImage(file=file2)
     bg3 = PhotoImage(file=file3)
