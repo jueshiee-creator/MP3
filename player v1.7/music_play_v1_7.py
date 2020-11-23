@@ -326,11 +326,13 @@ def play_options():
                 musicLong.set('{:0>2d}:{:0>2d}'.format(int(music_l//60),int(music_l%60)))
 
             m_name=nextMusic.split('.')[0]
-            s_path = os.path.dirname(os.path.abspath('__file__'))+r'\songs\lyrics\{}.txt'.format(m_name)
+            s_path = path+r'\songs\lyrics\{}.txt'.format(m_name)
+            print(s_path)
             if os.path.exists(s_path):
                 lyrics_display(m_name)
             else:
                 songs.delete(0, END)
+                print('无歌词')
                 songs.insert(0, '暂无歌词')
 
             global time_
@@ -422,7 +424,7 @@ def lyrics_display(m_name):
     """display the lyrics of the song"""
 
     songs.delete(0, END)
-    file = 'songs/lyrics/{}.txt'.format(m_name)
+    file = path+'/songs/lyrics/{}.txt'.format(m_name)
 
     codedFormat = ['utf-8', 'gbk']
     codedIndex = 0
